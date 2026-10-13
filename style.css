@@ -1,0 +1,655 @@
+/* ==========================================================================
+   個人簡介 - 現代極簡質感風格 (Personal Profile Stylesheet)
+   ========================================================================== */
+
+/* --- Google Fonts 引入 --- */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
+
+/* --- CSS 變數系統 (支援亮色 / 暗色主題) --- */
+:root {
+    --font-main: 'Plus Jakarta Sans', 'Noto Sans TC', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    
+    /* 亮色主題色票 (以溫暖陽光活力 + 柔和藍色為主調) */
+    --bg-gradient: linear-gradient(135deg, #e0f2fe 0%, #fef3c7 50%, #fed7aa 100%);
+    --bg-mesh: radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.25) 0px, transparent 50%),
+               radial-gradient(at 100% 0%, rgba(251, 146, 60, 0.25) 0px, transparent 50%),
+               radial-gradient(at 50% 100%, rgba(167, 139, 250, 0.2) 0px, transparent 50%);
+    --card-bg: rgba(255, 255, 255, 0.82);
+    --card-border: rgba(255, 255, 255, 0.65);
+    --card-shadow: 0 20px 45px -10px rgba(15, 23, 42, 0.12), 0 0 1px 1px rgba(255, 255, 255, 0.6);
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #64748b;
+    --primary-color: #ea580c;
+    --primary-light: #ffedd5;
+    --primary-glow: rgba(234, 88, 12, 0.25);
+    --accent-blue: #0284c7;
+    --accent-blue-light: #e0f2fe;
+    --tut-color: #0369a1;
+    --tut-bg: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+    --chip-bg: rgba(241, 245, 249, 0.9);
+    --chip-border: #e2e8f0;
+}
+
+[data-theme="dark"] {
+    /* 暗色主題色票 (奢華深邃科技感) */
+    --bg-gradient: linear-gradient(135deg, #0b1120 0%, #111827 50%, #1e1b4b 100%);
+    --bg-mesh: radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.15) 0px, transparent 50%),
+               radial-gradient(at 100% 0%, rgba(249, 115, 22, 0.18) 0px, transparent 50%),
+               radial-gradient(at 50% 100%, rgba(139, 92, 246, 0.15) 0px, transparent 50%);
+    --card-bg: rgba(17, 24, 39, 0.78);
+    --card-border: rgba(255, 255, 255, 0.08);
+    --card-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.55), 0 0 1px 1px rgba(255, 255, 255, 0.1);
+    --text-primary: #f8fafc;
+    --text-secondary: #cbd5e1;
+    --text-muted: #94a3b8;
+    --primary-color: #fb923c;
+    --primary-light: rgba(249, 115, 22, 0.15);
+    --primary-glow: rgba(249, 115, 22, 0.35);
+    --accent-blue: #38bdf8;
+    --accent-blue-light: rgba(56, 189, 248, 0.15);
+    --tut-color: #38bdf8;
+    --tut-bg: linear-gradient(135deg, #0284c7 0%, #1d4ed8 100%);
+    --chip-bg: rgba(30, 41, 59, 0.8);
+    --chip-border: rgba(255, 255, 255, 0.1);
+}
+
+/* --- 全域重置與基礎樣式 --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-main);
+    background: var(--bg-gradient);
+    min-height: 100vh;
+    color: var(--text-primary);
+    line-height: 1.6;
+    padding: 2.5rem 1rem;
+    position: relative;
+    overflow-x: hidden;
+    transition: background 0.4s ease, color 0.3s ease;
+}
+
+/* 柔和背景光暈裝飾 */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-mesh);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* --- 主容器 (Main Container) --- */
+.container {
+    max-width: 920px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+/* --- 頂部導航/功能列 --- */
+.top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding: 0 0.5rem;
+}
+
+.brand-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    backdrop-filter: blur(12px);
+    padding: 0.4rem 0.9rem;
+    border-radius: 9999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.brand-badge img {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.theme-toggle-btn {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    backdrop-filter: blur(12px);
+    color: var(--text-primary);
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.15rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease;
+}
+
+.theme-toggle-btn:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+}
+
+/* --- 主要卡片結構 (Glass Card) --- */
+.profile-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 28px;
+    box-shadow: var(--card-shadow);
+    padding: 2.75rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+/* 卡片上方彩色光帶 */
+.profile-card::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, #f97316, #fb923c, #38bdf8, #818cf8);
+}
+
+/* --- Hero 區塊：標題與頭像 --- */
+.hero-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 2.5rem;
+    position: relative;
+}
+
+/* 小火龍頭像容器與呼吸光暈 */
+.avatar-wrapper {
+    position: relative;
+    width: 170px;
+    height: 170px;
+    margin-bottom: 1.25rem;
+    cursor: pointer;
+}
+
+.avatar-glow {
+    position: absolute;
+    inset: -10px;
+    background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: pulse-glow 3s infinite ease-in-out;
+}
+
+.avatar-img-box {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(255, 237, 213, 0.8) 0%, rgba(254, 215, 170, 0.5) 100%);
+    border: 4px solid var(--card-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 12px 28px rgba(234, 88, 12, 0.22);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+}
+
+[data-theme="dark"] .avatar-img-box {
+    background: linear-gradient(135deg, rgba(41, 37, 36, 0.9) 0%, rgba(68, 64, 60, 0.6) 100%);
+}
+
+.avatar-img-box:hover {
+    transform: translateY(-4px) scale(1.04);
+    box-shadow: 0 18px 36px var(--primary-glow);
+}
+
+.avatar-img-box img {
+    width: 82%;
+    height: 82%;
+    object-fit: contain;
+    filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.15));
+    animation: float-mascot 3.5s ease-in-out infinite;
+    transition: transform 0.2s ease;
+}
+
+.avatar-wrapper:active .avatar-img-box img {
+    transform: scale(0.92) rotate(-5deg);
+}
+
+/* 寵物等級標章 */
+.status-pill {
+    position: absolute;
+    bottom: 0px;
+    right: 5px;
+    background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.3rem 0.7rem;
+    border-radius: 9999px;
+    box-shadow: 0 4px 10px rgba(234, 88, 12, 0.4);
+    border: 2px solid #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+[data-theme="dark"] .status-pill {
+    border-color: #1f2937;
+}
+
+/* 小火龍互動對話氣泡 */
+.speech-bubble {
+    position: absolute;
+    top: -12px;
+    right: -45px;
+    background: var(--card-bg);
+    color: var(--text-primary);
+    border: 1px solid var(--card-border);
+    padding: 0.35rem 0.8rem;
+    border-radius: 14px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+    pointer-events: none;
+    opacity: 0.95;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    white-space: nowrap;
+}
+
+/* --- 主標題 (保留原始 h1，注入極致質感) --- */
+h1.main-title {
+    font-size: 2.5rem;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, var(--primary-color) 0%, #f59e0b 50%, var(--accent-blue) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.4rem;
+    display: inline-block;
+}
+
+.hero-subtitle {
+    color: var(--text-muted);
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+/* --- 資訊卡片格狀網格 (Profile Grid) --- */
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+}
+
+.info-card {
+    background: rgba(255, 255, 255, 0.45);
+    border: 1px solid var(--chip-border);
+    border-radius: 20px;
+    padding: 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background 0.3s ease;
+}
+
+[data-theme="dark"] .info-card {
+    background: rgba(30, 41, 59, 0.45);
+}
+
+.info-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 24px -6px rgba(0, 0, 0, 0.08);
+    border-color: var(--primary-color);
+}
+
+/* 保留原樣式的標籤與內容 */
+.info-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.info-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 10px;
+    background: var(--primary-light);
+    color: var(--primary-color);
+    font-size: 0.95rem;
+    flex-shrink: 0;
+}
+
+.info-value {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    padding-left: 0.2rem;
+}
+
+/* 原文段落 (保留原本 HTML 內容與紅字特色，但融入精緻色系) */
+p.field-item {
+    display: flex;
+    align-items: baseline;
+    font-size: 1.05rem;
+    color: var(--text-primary);
+    margin-bottom: 0.2rem;
+}
+
+p.field-item.highlight-red {
+    color: #e11d48; /* 優雅的高級玫瑰紅取代死板純紅 */
+    font-weight: 700;
+}
+
+/* 標籤徽章組 (Chips) */
+.tags-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin-top: 0.3rem;
+}
+
+.badge-tag {
+    background: var(--chip-bg);
+    border: 1px solid var(--chip-border);
+    padding: 0.3rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    transition: all 0.2s ease;
+}
+
+.badge-tag:hover {
+    background: var(--primary-light);
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+    transform: translateY(-1px);
+}
+
+/* 專長技能條 */
+.skill-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    margin-top: 0.4rem;
+}
+
+.skill-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.skill-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.skill-bar-bg {
+    height: 8px;
+    background: var(--chip-bg);
+    border-radius: 9999px;
+    overflow: hidden;
+    border: 1px solid var(--chip-border);
+}
+
+.skill-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #ea580c, #f59e0b);
+    border-radius: 9999px;
+    transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* --- 自我介紹區塊 (About Me Section) --- */
+.about-card {
+    grid-column: 1 / -1;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, rgba(254, 243, 199, 0.3) 100%);
+    border: 1px solid var(--chip-border);
+    border-left: 4px solid var(--primary-color);
+    border-radius: 20px;
+    padding: 1.6rem 1.8rem;
+}
+
+[data-theme="dark"] .about-card {
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.7) 0%, rgba(51, 65, 85, 0.3) 100%);
+}
+
+.about-text {
+    font-size: 1.02rem;
+    color: var(--text-secondary);
+    line-height: 1.75;
+    margin-top: 0.5rem;
+}
+
+/* --- 學校連結區塊 (TUT 連結美化) --- */
+.links-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background: rgba(255, 255, 255, 0.35);
+    border: 1px dashed var(--chip-border);
+    border-radius: 20px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+[data-theme="dark"] .links-section {
+    background: rgba(30, 41, 59, 0.35);
+}
+
+.links-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+}
+
+.link-buttons-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+/* 改造 TUT 連結按鈕 (保留原本 a href 與 target="_blank") */
+a.tut-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.75rem 1.4rem;
+    background: var(--tut-bg);
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 14px;
+    box-shadow: 0 6px 16px rgba(2, 132, 199, 0.28);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+a.tut-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px rgba(2, 132, 199, 0.4);
+    color: #ffffff;
+}
+
+a.tut-btn.outline {
+    background: transparent;
+    color: var(--accent-blue);
+    border: 2px solid var(--accent-blue);
+    box-shadow: none;
+}
+
+a.tut-btn.outline:hover {
+    background: var(--accent-blue);
+    color: #ffffff;
+    box-shadow: 0 8px 18px rgba(2, 132, 199, 0.25);
+}
+
+/* --- 底部照片展示區 (Showcase Gallery) --- */
+.gallery-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-top: 1px solid var(--chip-border);
+    padding-top: 2rem;
+    text-align: center;
+}
+
+.gallery-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 1.25rem;
+}
+
+.gallery-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.gallery-item {
+    background: var(--card-bg);
+    border: 1px solid var(--chip-border);
+    border-radius: 20px;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    max-width: 320px;
+    width: 100%;
+}
+
+.gallery-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.09);
+}
+
+.gallery-item img {
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgba(255, 237, 213, 0.5) 0%, rgba(254, 215, 170, 0.3) 100%);
+    padding: 1rem;
+    width: 100%;
+    height: auto;
+    max-width: 220px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.06);
+}
+
+.gallery-caption {
+    margin-top: 0.75rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+/* --- 頁尾 (Footer) --- */
+footer.page-footer {
+    text-align: center;
+    margin-top: 2.5rem;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+/* --- 動畫定義 (Animations) --- */
+@keyframes float-mascot {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-8px) rotate(2deg);
+    }
+}
+
+@keyframes pulse-glow {
+    0%, 100% {
+        opacity: 0.5;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.85;
+        transform: scale(1.08);
+    }
+}
+
+/* --- 響應式微調 (Responsive) --- */
+@media (max-width: 640px) {
+    body {
+        padding: 1.25rem 0.75rem;
+    }
+
+    .profile-card {
+        padding: 2rem 1.25rem;
+        border-radius: 22px;
+    }
+
+    h1.main-title {
+        font-size: 2rem;
+    }
+
+    .avatar-wrapper {
+        width: 140px;
+        height: 140px;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .link-buttons-group {
+        flex-direction: column;
+    }
+
+    a.tut-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}

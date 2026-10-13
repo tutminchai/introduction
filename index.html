@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>個人簡介</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- 頂部功能列：小標章與深色/淺色模式切換 -->
+        <nav class="top-nav">
+            <div class="brand-badge">
+                <img src="images/favicon.ico" alt="Icon" onerror="this.style.display='none'">
+                <span>個人簡介・Portfolio</span>
+            </div>
+            <div class="nav-actions">
+                <button type="button" class="theme-toggle-btn" id="themeToggle" title="切換深色/淺色模式" aria-label="切換主題">
+                    <span id="themeIcon">🌙</span>
+                </button>
+            </div>
+        </nav>
+
+        <!-- 主要個人名片卡片 (Glassmorphism Card) -->
+        <main class="profile-card">
+            <!-- Hero 主視覺區塊 -->
+            <section class="hero-section">
+                <!-- 互動式小火龍頭像 -->
+                <div class="avatar-wrapper" id="avatarWrapper" title="點擊小火龍互動！">
+                    <div class="avatar-glow"></div>
+                    <div class="avatar-img-box">
+                        <img src="images/charmander.png" alt="小火龍" id="mascotImg">
+                    </div>
+                    <div class="status-pill">
+                        <span>🔥 Lv.15 小火龍</span>
+                    </div>
+                    <div class="speech-bubble" id="speechBubble">點我一下！🔥</div>
+                </div>
+
+                <!-- 主標題：個人簡介 -->
+                <h1 class="main-title">個人簡介</h1>
+                <p class="hero-subtitle">歡迎光臨我的個人頁面・台南應用科技大學 (TUT)</p>
+            </section>
+
+            <!-- 基本資料與特長格狀排版 (Info Grid) -->
+            <div class="info-grid">
+                <!-- 卡片 1：姓名與基本資料 -->
+                <div class="info-card">
+                    <div class="info-label">
+                        <span class="info-icon">👤</span>
+                        <!-- 保留原始姓名欄位，並加上優雅紅色高亮與可編輯文字 -->
+                        <p class="field-item highlight-red">
+                            姓名：<span class="info-value" id="valName">王小明 (點擊可修改)</span>
+                        </p>
+                    </div>
+                    <div class="tags-wrapper">
+                        <span class="badge-tag">熱情活力</span>
+                        <span class="badge-tag">熱愛學習</span>
+                        <span class="badge-tag">網頁新手</span>
+                    </div>
+                </div>
+
+                <!-- 卡片 2：星座 -->
+                <div class="info-card">
+                    <div class="info-label">
+                        <span class="info-icon">♈</span>
+                        <p class="field-item">
+                            星座：<span class="info-value" id="valZodiac">獅子座 ♌ (火象星座)</span>
+                        </p>
+                    </div>
+                    <div class="tags-wrapper">
+                        <span class="badge-tag">積極開朗</span>
+                        <span class="badge-tag">具領導力</span>
+                        <span class="badge-tag">真誠友善</span>
+                    </div>
+                </div>
+
+                <!-- 卡片 3：學歷 -->
+                <div class="info-card">
+                    <div class="info-label">
+                        <span class="info-icon">🎓</span>
+                        <p class="field-item">
+                            學歷：<span class="info-value" id="valEdu">台南應用科技大學 (TUT)</span>
+                        </p>
+                    </div>
+                    <div class="tags-wrapper">
+                        <span class="badge-tag">資訊管理 / 設計系</span>
+                        <span class="badge-tag">大一 / 大二在讀</span>
+                    </div>
+                </div>
+
+                <!-- 卡片 4：興趣 -->
+                <div class="info-card">
+                    <div class="info-label">
+                        <span class="info-icon">🎯</span>
+                        <p class="field-item">
+                            興趣：<span class="info-value" id="valHobby">網頁設計、寶可夢對戰</span>
+                        </p>
+                    </div>
+                    <div class="tags-wrapper">
+                        <span class="badge-tag">🎮 電玩冒險</span>
+                        <span class="badge-tag">🎧 音樂聆聽</span>
+                        <span class="badge-tag">☕ 咖啡廳探索</span>
+                        <span class="badge-tag">📸 攝影記錄</span>
+                    </div>
+                </div>
+
+                <!-- 卡片 5：專長 (保留原始紅字特色，設計為精美技能進度條) -->
+                <div class="info-card">
+                    <div class="info-label">
+                        <span class="info-icon">⚡</span>
+                        <p class="field-item highlight-red">
+                            專長：<span class="info-value" id="valSkill">前端設計與創意發想</span>
+                        </p>
+                    </div>
+                    <div class="skill-list">
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span>HTML5 結構標籤</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="skill-bar-bg">
+                                <div class="skill-bar-fill" style="width: 85%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span>CSS3 美化與動態</span>
+                                <span>80%</span>
+                            </div>
+                            <div class="skill-bar-bg">
+                                <div class="skill-bar-fill" style="width: 80%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span>視覺創意與美感設計</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="skill-bar-bg">
+                                <div class="skill-bar-fill" style="width: 90%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 卡片 6：自我介紹 (跨欄寬幅卡片) -->
+                <div class="info-card about-card">
+                    <div class="info-label">
+                        <span class="info-icon">📝</span>
+                        <p class="field-item">
+                            自我介紹：
+                        </p>
+                    </div>
+                    <p class="about-text" id="valBio">
+                        大家好！我是一名熱愛網頁開發與數位設計的探索者。平時喜歡研究美觀的使用者介面（UI）與流暢的動態互動效果。目前正積極充實
+                        HTML、CSS 與 JavaScript 前端技能，就像身旁的小火龍一樣，心中滿懷熱情，正一步步朝著卓越的前端設計師邁進！歡迎透過下方的學校連結了解我的校園生活！
+                    </p>
+                </div>
+            </div>
+
+            <!-- 學校連結展示區 (保留原本的 a 標籤與 target="_blank") -->
+            <section class="links-section">
+                <div class="links-header">
+                    <span>🏫 學校資訊與快速連結：</span>
+                </div>
+                <div class="link-buttons-group">
+                    <!-- 原連結 1：同分頁開啟 -->
+                    <a href="https://www.tut.edu.tw/" class="tut-btn">
+                        <span>🏛️</span>
+                        <span>台南應用科技大學 (TUT 官網)</span>
+                    </a>
+
+                    <!-- 原連結 2：新分頁開啟 (target="_blank") -->
+                    <a href="https://www.tut.edu.tw/" target="_blank" rel="noopener noreferrer" class="tut-btn outline">
+                        <span>🌐</span>
+                        <span>TUT 外部入口 (新視窗開啟 ↗)</span>
+                    </a>
+                </div>
+            </section>
+
+            <!-- 圖片展示專區 (保留原尺寸展示與 500x500 展示) -->
+            <section class="gallery-section">
+                <div class="gallery-title">📸 夥伴寫真展示 (Mascot Gallery)</div>
+                <div class="gallery-cards">
+                    <!-- 小火龍 原尺寸展示 -->
+                    <div class="gallery-item">
+                        <img src="images/charmander.png" alt="小火龍">
+                        <div class="gallery-caption">小火龍・活力夥伴 (標準規格)</div>
+                    </div>
+
+                    <!-- 小火龍 500x500 放大展示 (精準保留 width="500" height="500") -->
+                    <div class="gallery-item">
+                        <img src="images/charmander.png" alt="小火龍" width="500" height="500">
+                        <div class="gallery-caption">小火龍・高清寫真 (500 × 500)</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- 頁面版權頁尾 -->
+        <footer class="page-footer">
+            <p>© 2026 個人簡介・台南應用科技大學 (TUT) 網頁設計作業</p>
+        </footer>
+    </div>
+
+    <!-- 輕量微互動 JavaScript -->
+    <script>
+        // --- 1. 深色 / 淺色模式切換 ---
+        const themeToggleBtn = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const htmlElement = document.documentElement;
+
+        // 讀取本機儲存的主題偏好，預設為淺色 (powderblue 升級色)
+        const savedTheme = localStorage.getItem('site-theme') || 'light';
+        setTheme(savedTheme);
+
+        themeToggleBtn.addEventListener('click', () => {
+            const currentTheme = htmlElement.getAttribute('data-theme') || 'light';
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            setTheme(newTheme);
+        });
+
+        function setTheme(theme) {
+            if (theme === 'dark') {
+                htmlElement.setAttribute('data-theme', 'dark');
+                themeIcon.textContent = '☀️';
+                localStorage.setItem('site-theme', 'dark');
+            } else {
+                htmlElement.removeAttribute('data-theme');
+                themeIcon.textContent = '🌙';
+                localStorage.setItem('site-theme', 'light');
+            }
+        }
+
+        // --- 2. 小火龍趣味互動對話 ---
+        const avatarWrapper = document.getElementById('avatarWrapper');
+        const speechBubble = document.getElementById('speechBubble');
+        const mascotImg = document.getElementById('mascotImg');
+
+        const quotes = [
+            "噴射火焰！🔥✨",
+            "哩哩哩～查理！🦎",
+            "尾巴上的火焰正燃燒著！⚡",
+            "網頁技能點滿啦！🚀",
+            "今天也是充滿活力的一天！🌟"
+        ];
+        let quoteIndex = 0;
+
+        avatarWrapper.addEventListener('click', () => {
+            // 切換台詞
+            quoteIndex = (quoteIndex + 1) % quotes.length;
+            speechBubble.textContent = quotes[quoteIndex];
+            speechBubble.style.transform = 'scale(1.1)';
+            setTimeout(() => {
+                speechBubble.style.transform = 'scale(1)';
+            }, 200);
+
+            // 圖片晃動效果
+            mascotImg.style.transform = 'scale(1.15) rotate(' + (Math.random() > 0.5 ? '10' : '-10') + 'deg)';
+            setTimeout(() => {
+                mascotImg.style.transform = '';
+            }, 300);
+        });
+
+        // --- 3. 雙擊直接修改個人文字小便利功能 ---
+        const editableIds = ['valName', 'valZodiac', 'valEdu', 'valHobby', 'valSkill', 'valBio'];
+        editableIds.forEach(id => {
+            const el = document.getElementById(id);
+            if (el) {
+                el.style.cursor = 'pointer';
+                el.setAttribute('title', '點擊即可直接修改文字');
+                el.addEventListener('click', () => {
+                    const currentText = el.textContent;
+                    const newText = prompt('請輸入修改後的內容：', currentText.replace(' (點擊可修改)', ''));
+                    if (newText !== null && newText.trim() !== '') {
+                        el.textContent = newText.trim();
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
